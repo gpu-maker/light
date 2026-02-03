@@ -39,7 +39,8 @@ function travel(locationId) {
   // 3️⃣ move player
   state.scene = location.travelScene;
 
-  render();
+  render(updateMap();
+);
 }
 function updateMap() {
   Object.keys(mapLocations).forEach(loc => {
