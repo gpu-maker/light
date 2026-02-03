@@ -74,3 +74,11 @@ const scenes = {
     ]
   }
 };
+onEnter: () => {
+  if (!state.unlockedMap.includes("hospital")) {
+    state.unlockedMap.push("hospital");
+  }
+}
+street_intro → unlock alley
+alley_travel → unlock subway
+subway_travel → unlock hospital
