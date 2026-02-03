@@ -41,3 +41,9 @@ function travel(locationId) {
 
   render();
 }
+function updateMap() {
+  Object.keys(mapLocations).forEach(loc => {
+    const btn = document.getElementById("map-" + loc);
+    btn.disabled = !state.unlockedMap.includes(loc);
+  });
+}
