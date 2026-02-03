@@ -29,3 +29,15 @@ const mapLocations = {
     travelScene: "tower_travel"
   }
 };
+function travel(locationId) {
+  // 1️⃣ locked? do nothing
+  if (!state.unlockedMap.includes(locationId)) return;
+
+  // 2️⃣ get travel scene from map data
+  const location = mapLocations[locationId];
+
+  // 3️⃣ move player
+  state.scene = location.travelScene;
+
+  render();
+}
