@@ -1,63 +1,25 @@
-body {
-  background: #000;
-  color: #ddd;
-  font-family: Georgia, serif;
-  display: flex;
-  justify-content: center;
-  padding: 30px;
-}
+.hidden { display: none; }
 
-#game {
-  width: 760px;
-  background: #0a0a0a;
-  padding: 25px;
-  border: 2px solid #333;
-  box-shadow: 0 0 30px black;
-}
-
-#title {
-  text-align: center;
-  color: #ffcc66;
-}
-
-#scene-image {
-  width: 100%;
-  border: 1px solid #333;
-  margin-bottom: 15px;
-}
-
-#stats {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 10px;
-}
-
-#story {
-  line-height: 1.7;
-  margin-bottom: 15px;
-}
-
-#choices button {
-  width: 100%;
-  padding: 12px;
-  margin: 8px 0;
+#map button {
+  margin: 4px;
+  padding: 8px;
   background: #111;
-  color: #fff;
+  color: #ccc;
   border: 1px solid #444;
-  cursor: pointer;
 }
 
-#choices button:hover {
-  background: #333;
+#map button:disabled {
+  opacity: 0.3;
 }
 
-#inventory, #map {
-  margin-top: 15px;
-  border-top: 1px solid #333;
-  padding-top: 10px;
+#dialogue {
+  border: 1px solid #444;
+  padding: 10px;
+  margin-bottom: 15px;
+  background: #080808;
 }
 
-#controls {
-  text-align: center;
-  margin-top: 15px;
+#dialogue-choices button {
+  width: 100%;
+  margin: 5px 0;
 }
