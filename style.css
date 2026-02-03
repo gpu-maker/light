@@ -1,25 +1,53 @@
-.hidden { display: none; }
+body {
+  background: #0b0b0b;
+  color: #e0e0e0;
+  font-family: 'Georgia', serif;
+}
+
+#game {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+}
+
+h1, h2 {
+  text-align: center;
+  color: crimson;
+}
+
+#stats, #inventory {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+#scene {
+  padding: 20px;
+  background: #141414;
+  border: 1px solid #333;
+  margin-bottom: 10px;
+}
+
+button {
+  background: #222;
+  color: #eee;
+  border: 1px solid crimson;
+  padding: 10px;
+  margin: 5px 0;
+  width: 100%;
+  cursor: pointer;
+}
+
+button:hover {
+  background: crimson;
+}
 
 #map button {
-  margin: 4px;
-  padding: 8px;
-  background: #111;
-  color: #ccc;
-  border: 1px solid #444;
+  width: auto;
+  margin: 5px;
 }
 
-#map button:disabled {
-  opacity: 0.3;
-}
-
-#dialogue {
-  border: 1px solid #444;
-  padding: 10px;
-  margin-bottom: 15px;
-  background: #080808;
-}
-
-#dialogue-choices button {
-  width: 100%;
-  margin: 5px 0;
+.ending {
+  color: #888;
+  font-size: 0.9em;
 }
