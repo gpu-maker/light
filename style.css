@@ -1,18 +1,18 @@
 body {
-  background: radial-gradient(circle at top, #111, #000);
-  color: #e0e0e0;
-  font-family: "Georgia", serif;
+  background: #000;
+  color: #ddd;
+  font-family: Georgia, serif;
   display: flex;
   justify-content: center;
-  padding: 40px;
+  padding: 30px;
 }
 
 #game {
-  width: 700px;
-  background: #0d0d0d;
-  border: 2px solid #333;
+  width: 760px;
+  background: #0a0a0a;
   padding: 25px;
-  box-shadow: 0 0 20px #000;
+  border: 2px solid #333;
+  box-shadow: 0 0 30px black;
 }
 
 #title {
@@ -20,48 +20,44 @@ body {
   color: #ffcc66;
 }
 
+#scene-image {
+  width: 100%;
+  border: 1px solid #333;
+  margin-bottom: 15px;
+}
+
+#stats {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
 #story {
-  margin: 20px 0;
-  line-height: 1.6;
+  line-height: 1.7;
+  margin-bottom: 15px;
 }
 
 #choices button {
-  display: block;
   width: 100%;
-  margin: 10px 0;
   padding: 12px;
-  background: #222;
-  border: 1px solid #555;
+  margin: 8px 0;
+  background: #111;
   color: #fff;
+  border: 1px solid #444;
   cursor: pointer;
-  transition: background 0.2s;
 }
 
 #choices button:hover {
-  background: #444;
+  background: #333;
 }
 
-#inventory {
-  margin-top: 20px;
-  padding-top: 10px;
+#inventory, #map {
+  margin-top: 15px;
   border-top: 1px solid #333;
-}
-
-#inventory ul {
-  list-style: square;
-  padding-left: 20px;
+  padding-top: 10px;
 }
 
 #controls {
-  margin-top: 20px;
   text-align: center;
-}
-
-#controls button {
-  margin: 5px;
-  padding: 8px 14px;
-  background: #111;
-  border: 1px solid #555;
-  color: #ccc;
-  cursor: pointer;
+  margin-top: 15px;
 }
