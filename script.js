@@ -4,10 +4,6 @@ let state = {
   sanity: 100,
   inventory: [],
   visited: [],
-  unlockedMap: ["street"],
-  npcTrust: {
-    doctor: 0,
-    survivor: 0,
-    cultist: 0
-  }
+  unlockedMap: ["street"], // 👈 only street at start
+  unlockedEndings: []
 };
