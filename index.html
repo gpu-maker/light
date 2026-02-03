@@ -8,26 +8,37 @@
 <body>
 
 <div id="game">
-  <h1 id="title">The Last Light</h1>
+  <h1>The Last Light</h1>
 
-  <img id="scene-image" src="" alt="Scene">
+  <img id="scene-image">
 
   <div id="stats">
-    ❤️ Health: <span id="health"></span>
-    🧠 Sanity: <span id="sanity"></span>
+    ❤️ <span id="health"></span>
+    🧠 <span id="sanity"></span>
   </div>
 
   <div id="story"></div>
+
+  <div id="dialogue" class="hidden">
+    <h3 id="npc-name"></h3>
+    <div id="npc-text"></div>
+    <div id="dialogue-choices"></div>
+  </div>
+
   <div id="choices"></div>
+
+  <div id="map">
+    <h3>City Map</h3>
+    <button onclick="travel('street')" id="map-street">Street</button>
+    <button onclick="travel('alley')" id="map-alley">Alley</button>
+    <button onclick="travel('subway')" id="map-subway">Subway</button>
+    <button onclick="travel('hospital')" id="map-hospital">Hospital</button>
+    <button onclick="travel('tower')" id="map-tower">Tower</button>
+  </div>
 
   <div id="inventory">
     <h3>Inventory</h3>
     <ul id="inventory-list"></ul>
-  </div>
-
-  <div id="map">
-    <h3>Map</h3>
-    <div id="location"></div>
   </div>
 
   <div id="controls">
@@ -36,11 +47,6 @@
     <button onclick="restartGame()">Restart</button>
   </div>
 </div>
-
-<audio id="ambient" src="sounds/ambient.mp3" loop></audio>
-<audio id="pickup" src="sounds/pickup.mp3"></audio>
-<audio id="danger" src="sounds/danger.mp3"></audio>
-<audio id="death" src="sounds/death.mp3"></audio>
 
 <script src="script.js"></script>
 </body>
