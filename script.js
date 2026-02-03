@@ -1,96 +1,113 @@
 let state = {
-  scene: "start",
-  inventory: []
+  scene: "street",
+  health: 100,
+  sanity: 100,
+  inventory: [],
+  location: "Street"
 };
 
 const scenes = {
-  start: {
-    text: `You wake beneath a dying streetlamp. The city is silent.
-A note lies in your pocket: "Find the light before it finds you."`,
+  street: {
+    image: "images/alley.jpg",
+    text: `The streetlamp flickers. Something scratches inside your skull.
+The city feels wrong.`,
     choices: [
-      { text: "Search the alley", next: "alley", item: "Rusty Key" },
-      { text: "Walk toward the subway", next: "subway" }
+      { text: "Enter the alley", next: "alley", sanity: -5 },
+      { text: "Descend into the subway", next: "subway", sanity: -10 }
     ]
   },
 
   alley: {
-    text: `The alley smells of rain and metal. A locked door hums faintly.`,
+    image: "images/alley.jpg",
+    text: `The alley breathes. A door pulses faintly.`,
     choices: [
-      { text: "Use the Rusty Key", next: "door", requires: "Rusty Key" },
-      { text: "Return to the street", next: "start" }
-    ]
-  },
-
-  door: {
-    text: `The door opens into a hidden bunker. A lantern flickers.`,
-    choices: [
-      { text: "Take the lantern", next: "bunker", item: "Lantern" },
-      { text: "Leave immediately", next: "start" }
-    ]
-  },
-
-  bunker: {
-    text: `Maps cover the walls. One location is circled: THE TOWER.`,
-    choices: [
-      { text: "Head to the Tower", next: "tower" },
-      { text: "Rest for a moment", next: "rest" }
-    ]
-  },
-
-  rest: {
-    text: `You rest... but something moves in the dark. You barely escape.`,
-    choices: [
-      { text: "Run to the Tower", next: "tower" }
+      { text: "Open the door", next: "bunker", item: "Lantern" },
+      { text: "Run back", next: "street" }
     ]
   },
 
   subway: {
-    text: `The subway tunnels echo with whispers. Something watches.`,
+    image: "images/subway.jpg",
+    text: `Whispers crawl along the walls. They know your name.`,
     choices: [
-      { text: "Follow the whispers", next: "creature" },
-      { text: "Climb back up", next: "start" }
+      { text: "Follow the whispers", next: "creature", health: -20 },
+      { text: "Climb back up", next: "street" }
+    ]
+  },
+
+  bunker: {
+    image: "images/bunker.jpg",
+    text: `A bunker beneath the city. Maps show a TOWER.`,
+    choices: [
+      { text: "Go to the Tower", next: "tower" },
+      { text: "Rest (dangerous)", next: "rest" }
+    ]
+  },
+
+  rest: {
+    image: "images/creature.jpg",
+    text: `Sleep invites nightmares. Something touches you.`,
+    choices: [
+      { text: "Wake screaming", next: "bunker", sanity: -25 },
+      { text: "Let it in", next: "madness" }
     ]
   },
 
   creature: {
-    text: `A shadow lunges. Your light keeps it at bay.`,
+    image: "images/creature.jpg",
+    text: `A thing of shadow emerges.`,
     choices: [
-      { text: "Fight with Lantern", next: "escape", requires: "Lantern" },
-      { text: "You are consumed by darkness", next: "death" }
-    ]
-  },
-
-  escape: {
-    text: `The creature shrieks and fades. You escape to the surface.`,
-    choices: [
-      { text: "Go to the Tower", next: "tower" }
+      { text: "Fight with Lantern", next: "street", requires: "Lantern", sanity: -10 },
+      { text: "Freeze in terror", next: "death" }
     ]
   },
 
   tower: {
-    text: `At the Tower's summit, you ignite the final beacon.
-Light floods the city.`,
+    image: "images/tower.jpg",
+    text: `At the tower summit, the final light awaits.`,
     choices: [
-      { text: "Finish", next: "goodEnding" }
+      { text: "Ignite the beacon", next: "goodEnding" },
+      { text: "Refuse the burden", next: "badEnding" }
     ]
   },
 
-  goodEnding: {
-    text: `The darkness retreats. You have saved what remains.
-THE END (GOOD)`,
+  madness: {
+    image: "images/creature.jpg",
+    text: `Your mind fractures. You see forever.`,
     choices: []
   },
 
   death: {
-    text: `The city claims another soul.
-THE END (BAD)`,
+    image: "images/creature.jpg",
+    text: `The city feeds.`,
+    choices: []
+  },
+
+  goodEnding: {
+    image: "images/tower.jpg",
+    text: `Light floods the city. You are forgotten—but the world lives.`,
+    choices: []
+  },
+
+  badEnding: {
+    image: "images/tower.jpg",
+    text: `The light dies. So will everything else.`,
     choices: []
   }
 };
 
+const ambient = document.getElementById("ambient");
+ambient.volume = 0.3;
+ambient.play();
+
 function render() {
   const scene = scenes[state.scene];
+
+  document.getElementById("scene-image").src = scene.image;
   document.getElementById("story").innerText = scene.text;
+  document.getElementById("health").innerText = state.health;
+  document.getElementById("sanity").innerText = state.sanity;
+  document.getElementById("location").innerText = state.location;
 
   const choicesDiv = document.getElementById("choices");
   choicesDiv.innerHTML = "";
@@ -105,29 +122,50 @@ function render() {
   });
 
   renderInventory();
+  checkDeath();
 }
 
 function choose(choice) {
   if (choice.item && !state.inventory.includes(choice.item)) {
     state.inventory.push(choice.item);
+    document.getElementById("pickup").play();
   }
+
+  if (choice.health) state.health += choice.health;
+  if (choice.sanity) state.sanity += choice.sanity;
+
+  if (choice.health || choice.sanity) {
+    document.getElementById("danger").play();
+  }
+
   state.scene = choice.next;
   render();
+}
+
+function checkDeath() {
+  if (state.health <= 0) {
+    document.getElementById("death").play();
+    state.scene = "death";
+    render();
+  }
+  if (state.sanity <= 0) {
+    state.scene = "madness";
+    render();
+  }
 }
 
 function renderInventory() {
   const list = document.getElementById("inventory-list");
   list.innerHTML = "";
-  state.inventory.forEach(item => {
+  state.inventory.forEach(i => {
     const li = document.createElement("li");
-    li.innerText = item;
+    li.innerText = i;
     list.appendChild(li);
   });
 }
 
 function saveGame() {
   localStorage.setItem("cyoaSave", JSON.stringify(state));
-  alert("Game Saved!");
 }
 
 function loadGame() {
@@ -135,13 +173,17 @@ function loadGame() {
   if (save) {
     state = JSON.parse(save);
     render();
-  } else {
-    alert("No save found.");
   }
 }
 
 function restartGame() {
-  state = { scene: "start", inventory: [] };
+  state = {
+    scene: "street",
+    health: 100,
+    sanity: 100,
+    inventory: [],
+    location: "Street"
+  };
   render();
 }
 
