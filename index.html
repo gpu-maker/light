@@ -2,50 +2,31 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>The Last Light</title>
+  <title>The Black Hollow</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <div id="game">
-  <h1>The Last Light</h1>
-
-  <img id="scene-image">
+  <h1>The Black Hollow</h1>
 
   <div id="stats">
-    ❤️ <span id="health"></span>
-    🧠 <span id="sanity"></span>
-  </div>
-
-  <div id="story"></div>
-
-  <div id="dialogue" class="hidden">
-    <h3 id="npc-name"></h3>
-    <div id="npc-text"></div>
-    <div id="dialogue-choices"></div>
-  </div>
-
-  <div id="choices"></div>
-
-  <div id="map">
-    <h3>City Map</h3>
-    <button onclick="travel('street')" id="map-street">Street</button>
-    <button onclick="travel('alley')" id="map-alley">Alley</button>
-    <button onclick="travel('subway')" id="map-subway">Subway</button>
-    <button onclick="travel('hospital')" id="map-hospital">Hospital</button>
-    <button onclick="travel('tower')" id="map-tower">Tower</button>
+    ❤️ Health: <span id="health"></span>
+    🧠 Sanity: <span id="sanity"></span>
   </div>
 
   <div id="inventory">
-    <h3>Inventory</h3>
-    <ul id="inventory-list"></ul>
+    🎒 Inventory: <span id="items">Empty</span>
   </div>
 
-  <div id="controls">
-    <button onclick="saveGame()">Save</button>
-    <button onclick="loadGame()">Load</button>
-    <button onclick="restartGame()">Restart</button>
-  </div>
+  <div id="scene"></div>
+  <div id="choices"></div>
+
+  <h2>🗺️ Map</h2>
+  <div id="map"></div>
+
+  <h2>🏁 Endings Found</h2>
+  <div id="endings"></div>
 </div>
 
 <script src="script.js"></script>
