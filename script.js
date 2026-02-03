@@ -48,3 +48,29 @@ function updateMap() {
     btn.disabled = !state.unlockedMap.includes(loc);
   });
 }
+const scenes = {
+  street_travel: {
+    image: "images/street.jpg",
+    text: "You stand beneath the flickering streetlamp.",
+    choices: [
+      { text: "Explore the area", next: "street_explore" }
+    ]
+  },
+
+  alley_travel: {
+    image: "images/alley.jpg",
+    text: "The alley smells of rust and rain.",
+    choices: [
+      { text: "Search the shadows", next: "alley_search" }
+    ]
+  },
+
+  hospital_travel: {
+    image: "images/hospital.jpg",
+    text: "The hospital looms silent.",
+    onEnter: () => startDialogue("doctor"),
+    choices: [
+      { text: "Enter the hospital", next: "hospital_depths" }
+    ]
+  }
+};
