@@ -1,0 +1,67 @@
+body {
+  background: radial-gradient(circle at top, #111, #000);
+  color: #e0e0e0;
+  font-family: "Georgia", serif;
+  display: flex;
+  justify-content: center;
+  padding: 40px;
+}
+
+#game {
+  width: 700px;
+  background: #0d0d0d;
+  border: 2px solid #333;
+  padding: 25px;
+  box-shadow: 0 0 20px #000;
+}
+
+#title {
+  text-align: center;
+  color: #ffcc66;
+}
+
+#story {
+  margin: 20px 0;
+  line-height: 1.6;
+}
+
+#choices button {
+  display: block;
+  width: 100%;
+  margin: 10px 0;
+  padding: 12px;
+  background: #222;
+  border: 1px solid #555;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+#choices button:hover {
+  background: #444;
+}
+
+#inventory {
+  margin-top: 20px;
+  padding-top: 10px;
+  border-top: 1px solid #333;
+}
+
+#inventory ul {
+  list-style: square;
+  padding-left: 20px;
+}
+
+#controls {
+  margin-top: 20px;
+  text-align: center;
+}
+
+#controls button {
+  margin: 5px;
+  padding: 8px 14px;
+  background: #111;
+  border: 1px solid #555;
+  color: #ccc;
+  cursor: pointer;
+}
