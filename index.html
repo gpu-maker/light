@@ -10,13 +10,24 @@
 <div id="game">
   <h1 id="title">The Last Light</h1>
 
-  <div id="story"></div>
+  <img id="scene-image" src="" alt="Scene">
 
+  <div id="stats">
+    ❤️ Health: <span id="health"></span>
+    🧠 Sanity: <span id="sanity"></span>
+  </div>
+
+  <div id="story"></div>
   <div id="choices"></div>
 
   <div id="inventory">
     <h3>Inventory</h3>
     <ul id="inventory-list"></ul>
+  </div>
+
+  <div id="map">
+    <h3>Map</h3>
+    <div id="location"></div>
   </div>
 
   <div id="controls">
@@ -25,6 +36,11 @@
     <button onclick="restartGame()">Restart</button>
   </div>
 </div>
+
+<audio id="ambient" src="sounds/ambient.mp3" loop></audio>
+<audio id="pickup" src="sounds/pickup.mp3"></audio>
+<audio id="danger" src="sounds/danger.mp3"></audio>
+<audio id="death" src="sounds/death.mp3"></audio>
 
 <script src="script.js"></script>
 </body>
